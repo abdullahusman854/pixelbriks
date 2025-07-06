@@ -106,24 +106,7 @@ export default function CareerSection() {
                         <span>{job.type}</span>
                       </div>
                     </div>
-                  </div>
-                  
-                  {/* Expand/Collapse Icon */}
-                  <div className="flex items-center space-x-4">
-                    <span className="px-3 py-1 bg-green-500/20 text-green-400 text-xs font-semibold rounded-full border border-green-500/30">
-                      Available
-                    </span>
-                    <svg
-                      className={`w-6 h-6 text-gray-400 transition-transform duration-300 ${
-                        expandedJob === job.id ? 'rotate-180' : ''
-                      }`}
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                    </svg>
-                  </div>
+                  </div>  
                 </div>
 
                 {/* Expandable Content */}
