@@ -9,7 +9,7 @@ export default function SocialSection() {
   const socialPlatforms = [
     {
       platform: 'LinkedIn',
-      handle: 'PixelBriks',
+      handle: 'Pixelbriks',
       url: 'https://www.linkedin.com/company/pixelbriks/',
       description: 'Connect with our professional network',
       icon: (
@@ -24,7 +24,7 @@ export default function SocialSection() {
     },
     {
       platform: 'Instagram',
-      handle: 'PixelBriks',
+      handle: 'Pixelbriks',
       url: 'https://www.instagram.com/pixelbriks?igsh=MXhxYmc2ajY3OG14Mg==',
       description: 'Follow our creative journey',
       icon: (
