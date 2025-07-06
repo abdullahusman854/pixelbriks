@@ -167,7 +167,7 @@ export default function Footer() {
         <div className="mt-12 pt-8 border-t border-gray-700">
           <div className="flex flex-col items-center gap-4 text-center">
             <p className="text-gray-400 text-sm">
-              &copy; 2026 Pixelbriks. All rights reserved.
+              &copy; 2025 Pixelbriks. All rights reserved.
             </p>
             
             <div className="flex items-center gap-6 text-sm text-gray-400">
