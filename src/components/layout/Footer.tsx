@@ -15,13 +15,23 @@ export default function Footer() {
     e.preventDefault();
     setIsSubmitting(true);
     setSubmitStatus(null);
-    
+
+    // Check for required env variables
+    const serviceId = process.env.NEXT_PUBLIC_SERVICE_ID;
+    const templateId = process.env.NEXT_PUBLIC_TEMPLATE_ID;
+    const publicKey = process.env.NEXT_PUBLIC_PUBLIC_KEY;
+    if (!serviceId || !templateId || !publicKey) {
+      console.error('Missing EmailJS environment variables.');
+      setSubmitStatus('error');
+      setIsSubmitting(false);
+      return;
+    }
     try {
       await emailjs.send(
-        process.env.NEXT_PUBLIC_SERVICE_ID!,
-        process.env.NEXT_PUBLIC_TEMPLATE_ID!,
+        serviceId,
+        templateId,
         { email, message },
-        process.env.NEXT_PUBLIC_PUBLIC_KEY!
+        publicKey
       );
       setEmail('');
       setMessage('');
@@ -156,7 +166,11 @@ export default function Footer() {
                   <svg className="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                   </svg>
-                  <span>Failed to send message. Please try again or contact us directly.</span>
+                  <span>
+                    {(!process.env.NEXT_PUBLIC_SERVICE_ID || !process.env.NEXT_PUBLIC_TEMPLATE_ID || !process.env.NEXT_PUBLIC_PUBLIC_KEY)
+                      ? 'Email service is not configured. Please contact us directly.'
+                      : 'Failed to send message. Please try again or contact us directly.'}
+                  </span>
                 </div>
               )}
             </div>
