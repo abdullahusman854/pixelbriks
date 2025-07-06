@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
-import { Sphere, Box, Torus } from '@react-three/drei';
 import * as THREE from 'three';
+import Image from 'next/image';
 
 // Types
 interface FloatingObjectProps {
@@ -24,7 +24,7 @@ interface Particle {
 function FloatingObject({ position, geometry, color, speed = 1 }: FloatingObjectProps) {
   const meshRef = useRef<THREE.Mesh>(null);
   
-  useFrame((state: any) => {
+  useFrame((state: { clock: { elapsedTime: number } }) => {
     if (meshRef.current) {
       meshRef.current.rotation.x += 0.01 * speed;
       meshRef.current.rotation.y += 0.01 * speed;
@@ -170,10 +170,12 @@ export default function HeroSection() {
                 {/* <div className="absolute inset-4 bg-gradient-to-br from-blue-600/20 to-purple-600/20 rounded-full blur-xl animate-pulse delay-1000" /> */}
                 
                 {/* Main Image */}
-                <img
+                <Image
                   src="/images/main.png"
                   alt="PixelBriks Web3 Agency Hero"
-                  className="relative z-10 w-full h-full object-contain animate-float drop-shadow-2xl"
+                  layout="fill"
+                  objectFit="contain"
+                  className="relative z-10 w-full h-full animate-float drop-shadow-2xl"
                   style={{
                     filter: 'drop-shadow(0 20px 40px rgba(59, 130, 246, 0.3))',
                   }}

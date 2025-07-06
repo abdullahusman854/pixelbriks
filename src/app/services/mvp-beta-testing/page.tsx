@@ -39,7 +39,7 @@ export default function MVPBetaTestingPage() {
         <div className="service-page-header">
           <div className="container">
             <h1>MVP & Beta Testing</h1>
-            <p>Ensuring your game's functionality and user experience excellence</p>
+            <p>Ensuring your game&apos;s functionality and user experience excellence</p>
           </div>
         </div>
         

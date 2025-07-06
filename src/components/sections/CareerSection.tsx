@@ -6,7 +6,6 @@ import { jobs } from '../../constants/careers';
 export default function CareerSection() {
   const [isVisible, setIsVisible] = useState(false);
   const [expandedJob, setExpandedJob] = useState<number | null>(null);
-  const [selectedDepartment, setSelectedDepartment] = useState<string>('All');
   const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
@@ -39,9 +38,7 @@ export default function CareerSection() {
     window.open(`mailto:hr@pixelbriks.com?subject=${subject}&body=${body}`, '_blank');
   };
 
-  const filteredJobs = selectedDepartment === 'All' 
-    ? jobs.filter(job => job.isAvailable)
-    : jobs.filter(job => job.department === selectedDepartment && job.isAvailable);
+  const filteredJobs = jobs.filter(job => job.isAvailable);
 
   return (
     <section ref={sectionRef} id="careers" className="section relative overflow-hidden">
@@ -76,7 +73,7 @@ export default function CareerSection() {
             </h2>
           </div>
           <p className="text-xl text-gray-300 max-w-2xl mx-auto leading-relaxed">
-            Build the future with us. We're looking for passionate individuals who want to make a difference.
+            Build the future with us. We&apos;re looking for passionate individuals who want to make a difference.
           </p>
         </div>
 
@@ -198,7 +195,7 @@ export default function CareerSection() {
               </svg>
             </div>
             <h3 className="text-2xl font-bold text-white mb-2">No Open Positions</h3>
-            <p className="text-gray-400">We don't have any open positions in this department right now. Check back later or explore other departments!</p>
+            <p className="text-gray-400">We don&apos;t have any open positions in this department right now. Check back later or explore other departments!</p>
           </div>
         )}
       </div>
