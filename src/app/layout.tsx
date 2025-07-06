@@ -9,8 +9,8 @@ const montserrat = Montserrat({
 });
 
 export const metadata: Metadata = {
-  title: "Brixel Solutions - Web3 KOL Marketing",
-  description: "Empowering Web3 projects with strategic marketing and community building solutions.",
+  title: "Pixelbriks - Digital Innovation",
+  description: "Empowering startups and businesses with tailor-made software, high-converting UI/UX, and smart digital strategies that deliver results faster. From MVPs to full-scale products, we build with purpose.",
 };
 
 export default function RootLayout({

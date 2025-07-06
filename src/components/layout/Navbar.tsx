@@ -35,7 +35,7 @@ export default function Navbar() {
             <div className="relative w-12 h-12 mr-3">
               <Image
                 src="/images/Logo.png"
-                alt="Brixel Solutions Logo"
+                alt="Pixelbriks Logo"
                 fill
                 className="object-contain transition-transform duration-300 group-hover:scale-110 group-hover:drop-shadow-glow"
               />
