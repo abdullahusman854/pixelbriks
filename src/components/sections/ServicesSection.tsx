@@ -83,7 +83,7 @@ export default function ServicesSection() {
         {/* Section Header */}
         <div className="text-center mb-12 sm:mb-20">
           <h2 className="text-3xl xs:text-4xl sm:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6">
-            <span className="bg-gradient-to-r from-primary-500 to-secondary-500 bg-clip-text text-transparent">
+            <span className="bg-primary-500 bg-clip-text text-transparent">
               Our Services
             </span>
           </h2>
