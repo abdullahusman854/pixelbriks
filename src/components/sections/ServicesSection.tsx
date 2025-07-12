@@ -2,39 +2,23 @@
 import { useEffect, useRef, useState } from 'react';
 import { services, Service, getServiceMailTemplate } from '../../constants/services';
 import { ReactNode } from 'react';
+import {
+  Cloud,
+  Layers,
+  PenTool,
+  Code2,
+  Brain,
+  Users,
+} from 'lucide-react';
 
-// Icon mapping for service icons
+// Updated icon mapping with proper styling - using white fill and ensuring visibility
 const serviceIcons: Record<string, ReactNode> = {
-  saas: (
-    <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-    </svg>
-  ),
-  cloud: (
-    <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z" />
-    </svg>
-  ),
-  design: (
-    <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zM21 5a2 2 0 00-2-2h-4a2 2 0 00-2 2v6a2 2 0 002 2h4a2 2 0 002-2V5z" />
-    </svg>
-  ),
-  api: (
-    <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-    </svg>
-  ),
-  ai: (
-    <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
-    </svg>
-  ),
-  consulting: (
-    <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-    </svg>
-  ),
+  saas: <Layers size={32} strokeWidth={2.2} className="text-white" />, // SaaS
+  cloud: <Cloud size={32} strokeWidth={2.2} className="text-white" />, // Cloud
+  design: <PenTool size={32} strokeWidth={2.2} className="text-white" />, // Design
+  api: <Code2 size={32} strokeWidth={2.2} className="text-white" />, // API
+  ai: <Brain size={32} strokeWidth={2.2} className="text-white" />, // AI
+  consulting: <Users size={32} strokeWidth={2.2} className="text-white" />, // Consulting
 };
 
 export default function ServicesSection() {
@@ -99,7 +83,7 @@ export default function ServicesSection() {
         {/* Section Header */}
         <div className="text-center mb-12 sm:mb-20">
           <h2 className="text-3xl xs:text-4xl sm:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6">
-            <span className="bg-primary-500 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-primary-500 to-secondary-500 bg-clip-text text-transparent">
               Our Services
             </span>
           </h2>
@@ -120,11 +104,31 @@ export default function ServicesSection() {
               style={{ animationDelay: `${index * 150}ms` }}
             >
               {/* Gradient Border Effect */}
-              <div className={`absolute inset-0 bg-gradient-to-r ${service.color} rounded-2xl opacity-0 group-hover:opacity-20 transition-opacity duration-500 blur-sm`} />
-              {/* Icon Container */}
-              <div className={`relative w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-r ${service.color} rounded-2xl flex items-center justify-center mb-4 sm:mb-6 transition-all duration-300 group-hover:scale-110 group-hover:shadow-lg`}>
+              <div className={`absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-20 transition-opacity duration-500 blur-sm`} 
+                   style={{
+                     background: service.color.includes('gradient') 
+                       ? service.color.replace('from-', '').replace('to-', '').replace('bg-gradient-to-r', 'linear-gradient(135deg,')
+                       : `linear-gradient(135deg, ${service.color.split(' ')[0]}, ${service.color.split(' ')[1] || service.color.split(' ')[0]})`
+                   }} />
+              
+              {/* Icon Container with fixed gradient background */}
+              <div className="relative w-14 h-14 sm:w-16 sm:h-16 rounded-2xl flex items-center justify-center mb-4 sm:mb-6 transition-all duration-300 group-hover:scale-110 group-hover:shadow-lg group-hover:shadow-current/25"
+                   style={{
+                     background: service.color.includes('primary') 
+                       ? 'linear-gradient(135deg, #B211F4, #9d0edb)'
+                       : service.color.includes('secondary')
+                       ? 'linear-gradient(135deg, #0ea5e9, #0284c7)'
+                       : service.color.includes('green')
+                       ? 'linear-gradient(135deg, #10b981, #059669)'
+                       : service.color.includes('orange')
+                       ? 'linear-gradient(135deg, #f97316, #ea580c)'
+                       : service.color.includes('purple')
+                       ? 'linear-gradient(135deg, #8b5cf6, #7c3aed)'
+                       : 'linear-gradient(135deg, #B211F4, #9d0edb)'
+                   }}>
                 {serviceIcons[service.icon as string]}
               </div>
+              
               {/* Content */}
               <div className="relative z-10">
                 <h3 className="text-lg sm:text-xl font-bold text-white mb-2 sm:mb-4 group-hover:text-primary-300 transition-colors duration-300">
@@ -176,7 +180,20 @@ export default function ServicesSection() {
             <div className="p-3 xs:p-4 sm:p-8 lg:p-12 w-full flex flex-col items-center sm:items-start">
               {/* Header */}
               <div className="flex flex-col sm:flex-row items-center sm:items-start gap-3 xs:gap-4 sm:gap-6 mb-6 sm:mb-8 w-full">
-                <div className={`w-16 h-16 xs:w-20 xs:h-20 bg-gradient-to-r ${activeService.color} rounded-2xl flex items-center justify-center flex-shrink-0 mb-3 sm:mb-0`}>
+                <div className="w-16 h-16 xs:w-20 xs:h-20 rounded-2xl flex items-center justify-center flex-shrink-0 mb-3 sm:mb-0"
+                     style={{
+                       background: activeService.color.includes('primary') 
+                         ? 'linear-gradient(135deg, #B211F4, #9d0edb)'
+                         : activeService.color.includes('secondary')
+                         ? 'linear-gradient(135deg, #0ea5e9, #0284c7)'
+                         : activeService.color.includes('green')
+                         ? 'linear-gradient(135deg, #10b981, #059669)'
+                         : activeService.color.includes('orange')
+                         ? 'linear-gradient(135deg, #f97316, #ea580c)'
+                         : activeService.color.includes('purple')
+                         ? 'linear-gradient(135deg, #8b5cf6, #7c3aed)'
+                         : 'linear-gradient(135deg, #B211F4, #9d0edb)'
+                     }}>
                   {serviceIcons[activeService.icon as string]}
                 </div>
                 <div className="flex-1 text-center sm:text-left">
